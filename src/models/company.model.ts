@@ -1,7 +1,7 @@
 import config from '@/config';
 import { TenantPrismaClient } from '@/config/prisma';
 import validator from '@/function/validator';
-import { PrismaClient } from '@/generated';
+import { PrismaClient } from '../generated/index';
 import {
   ApproveCompany,
   DeleteCompany,

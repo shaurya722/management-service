@@ -1,4 +1,4 @@
-import type { Policy } from '@/generated';
+import type { Policy } from '../../generated/index';
 import type { IAppError } from '@/types';
 
 export type CreatePolicy = (params: {

@@ -1,6 +1,6 @@
 import { TenantPrismaClient } from '@/config/prisma';
 import validator from '@/function/validator';
-import type { Prisma } from '@/generated';
+import type { Prisma } from '../generated/index';
 import {
   CreatePolicy,
   DeletePolicy,

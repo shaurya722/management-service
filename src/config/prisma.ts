@@ -1,5 +1,5 @@
 import config from '@/config';
-import { PrismaClient } from '@/generated';
+import { PrismaClient } from '../generated/index';
 import fs from 'node:fs';
 import path from 'node:path';
 import { v4 as uuidv4 } from 'uuid';

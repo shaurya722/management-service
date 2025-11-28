@@ -48,7 +48,9 @@ export const createJobController = catchAsync(async (req, res, next) => {
 
   const newJob = await createJob({
     projectId,
-    status: (project.type === 'BLUE' ? 'STARTED' : 'PENDING') as import('@/generated').JobStatus,
+    status: (project.type === 'BLUE'
+      ? 'STARTED'
+      : 'PENDING') as import('../../generated/index').JobStatus,
     redAuthorizationValue,
     evaluationThreshold,
     agenticReport,
@@ -247,7 +249,7 @@ export const getJobsByStatusController = catchAsync(async (req, res, next) => {
 export const getJobStatuses = catchAsync(async (req, res) => {
   return sendRes({
     data: {
-      jobStatuses: Object.values((await import('@/generated')).JobStatus),
+      jobStatuses: Object.values((await import('../../generated/index')).JobStatus),
     },
     status: constant.SUCCESS,
     res,
@@ -259,7 +261,7 @@ export const getJobStatuses = catchAsync(async (req, res) => {
 export const getJobTypes = catchAsync(async (req, res) => {
   return sendRes({
     data: {
-      jobTypes: Object.values((await import('@/generated')).Type),
+      jobTypes: Object.values((await import('../../generated/index')).Type),
     },
     status: constant.SUCCESS,
     res,

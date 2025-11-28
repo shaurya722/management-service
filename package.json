@@ -4,7 +4,7 @@
   "description": "Node.js Management Microservice with TypeScript",
   "main": "dist/server.js",
   "scripts": {
-    "build": "tsc && tsc-alias",
+    "build": "tsc && tsc-alias && cp -r src/generated dist/",
     "start": "node dist/server.js",
     "start:dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/server.ts",
     "lint": "eslint src/**/*.ts",

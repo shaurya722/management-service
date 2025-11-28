@@ -1,4 +1,4 @@
-import { RedReport } from '@/generated';
+import { RedReport } from '../../generated/index';
 import { IAppError } from '@/types';
 
 export type CreateJob = (params: {

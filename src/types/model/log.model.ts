@@ -1,4 +1,4 @@
-import type { BlueTeamLog, RedTeamLog } from '@/generated';
+import type { BlueTeamLog, RedTeamLog } from '../../generated/index';
 import type { IAppError } from '@/types';
 
 export interface ListLogsParams {

@@ -1,4 +1,4 @@
-import type { Category } from '@/generated';
+import type { Category } from '../../generated/index';
 import type { IAppError } from '@/types';
 
 // Create Category Types

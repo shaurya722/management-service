@@ -1,5 +1,5 @@
 import { TenantPrismaClient } from '@/config/prisma';
-import type { Prisma } from '@/generated';
+import type { Prisma } from '../generated/index';
 import {
   CreateCategory,
   DeleteCategory,

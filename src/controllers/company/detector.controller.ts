@@ -197,7 +197,7 @@ export const getBuildInDetectorsController = catchAsync(async (req, res, next) =
 export const getDetectorTypes = catchAsync(async (req, res) => {
   return sendRes({
     data: {
-      detectorTypes: Object.values((await import('@/generated')).DetectorType),
+      detectorTypes: Object.values((await import('../../generated/index')).DetectorType),
     },
     status: constant.SUCCESS,
     res,
