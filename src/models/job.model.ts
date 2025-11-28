@@ -551,3 +551,15 @@ export const getJobReport: GetJobReport = async params => {
     ['job', 'project', 'blueteam_logs'] // Need job, project, and blueteam_logs tables
   );
 };
+
+export const checkRabbitMQHealth = async (): Promise<boolean> => {
+  try {
+    const amqp = await import('amqplib');
+    const connection = await amqp.connect(config.RABBITMQ_URL);
+    await connection.close();
+    return true;
+  } catch (error) {
+    console.error('RabbitMQ health check failed:', error);
+    return false;
+  }
+};
