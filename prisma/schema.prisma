@@ -1,0 +1,424 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated"
+  binaryTargets = ["native", "windows", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id                String    @id @default(uuid())
+  email             String    @unique
+  password          String
+  name              String
+  role              AdminRole @default(ADMIN)
+  isActive          Boolean   @default(true)
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  approvedCompanies Company[] @relation("ApprovedBy")
+  rejectedCompanies Company[] @relation("RejectedBy")
+
+  @@map("admins")
+}
+
+model Whitelist {
+  id          String   @id @default(uuid())
+  domain      String   @unique
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("whitelists")
+}
+
+model Company {
+  id                 String        @id @default(uuid())
+  name               String
+  website            String?
+  phone              String?
+  address            String?
+  contactPersonName  String
+  contactPersonEmail String        @unique
+  status             CompanyStatus @default(PENDING)
+  requestedAt        DateTime      @default(now()) @map("requested_at")
+  approvedAt         DateTime?     @map("approved_at")
+  rejectedAt         DateTime?     @map("rejected_at")
+  approvedById       String?       @map("approved_by_id")
+  rejectedById       String?       @map("rejected_by_id")
+  rejectionReason    String?       @map("rejection_reason")
+  tenantId           String        @unique @map("tenant_id")
+  dbCreated          Boolean       @default(false) @map("db_created")
+  dbCreatedAt        DateTime?     @map("db_created_at")
+  createdAt          DateTime      @default(now()) @map("created_at")
+  updatedAt          DateTime      @updatedAt @map("updated_at")
+  approvedBy         Admin?        @relation("ApprovedBy", fields: [approvedById], references: [id])
+  rejectedBy         Admin?        @relation("RejectedBy", fields: [rejectedById], references: [id])
+
+  @@map("companies")
+}
+
+model User {
+  id          String        @id @default(uuid())
+  email       String        @unique
+  password    String
+  name        String
+  is_active   Boolean       @default(true)
+  lastLoginAt DateTime?     @map("last_login_at")
+  loginCount  Int           @default(0) @map("login_count")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+  sessions    UserSession[]
+
+  @@map("users")
+}
+
+model UserSession {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  token     String   @unique
+  expiresAt DateTime @map("expires_at")
+  is_active Boolean  @default(true)
+  ipAddress String?  @map("ip_address")
+  userAgent String?  @map("user_agent")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_sessions")
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  action     String
+  entityType String   @map("entity_type")
+  entityId   String   @map("entity_id")
+  actorType  String   @map("actor_type")
+  actorId    String?  @map("actor_id")
+  actorEmail String?  @map("actor_email")
+  ipAddress  String?  @map("ip_address")
+  userAgent  String?  @map("user_agent")
+  tenantId   String?  @map("tenant_id")
+  oldValues  Json?    @map("old_values")
+  newValues  Json?    @map("new_values")
+  metadata   Json?
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@map("audit_logs")
+}
+
+model SystemConfig {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  value       String
+  description String?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("system_config")
+}
+
+enum AdminRole {
+  SUPER_ADMIN
+  ADMIN
+  MODERATOR
+}
+
+enum CompanyStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  SUSPENDED
+  ACTIVE
+}
+
+model Detectors {
+  id                  String       @id @default(uuid())
+  detectorName        String       @unique @map("detector_name")
+  description         String?      @map("description")
+  creationType        CreationType @map("creation_type")
+  detectorType        DetectorType @map("detector_type")
+  confidence          Float        @map("confidence")
+  regex               String[]     @map("regex")
+  createdAt           DateTime     @default(now()) @map("created_at")
+  updatedAt           DateTime     @updatedAt @map("updated_at")
+
+  policies            Policy[]     @relation("PolicyDetectors") // Many-to-many relation
+
+  @@map("detectors")
+}
+
+enum CreationType {
+  BuiltIn
+  External
+}
+
+enum DetectorType {
+    REGEX
+    HEURISTIC
+    CLASSIFIER
+    EMBEDDING
+    PACKAGE_REGISTRY
+    PII
+}
+
+model Probe {
+  id          String   @id @default(uuid())
+  probeId     String   @unique @map("probe_id")
+  name        String
+  description String?
+
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  categories  ProbeCategory[]
+
+  @@map("probes")
+}
+
+model Category {
+  id          String         @id @default(uuid())
+  name        String
+  description String?
+  isBuiltIn   Boolean        @default(false) @map("is_built_in")
+
+  probes      ProbeCategory[]
+  policies    Policy[]       @relation("PolicyCategories") // Many-to-many relation
+
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("categories")
+}
+
+model ProbeCategory {
+  probeId    String   @map("probe_id")
+  categoryId String   @map("category_id")
+
+  probe      Probe    @relation(fields: [probeId], references: [probeId], onDelete: Cascade)
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([probeId, categoryId])
+  @@map("probe_categories")
+}
+
+model Policy {
+  id              String   @id @default(uuid())
+  name            String
+  description     String?
+  type            Type @map("type")
+  detectors       Detectors[] @relation("PolicyDetectors") // Many-to-many relation
+  categories      Category[] @relation("PolicyCategories") // Many-to-many relation
+  defaultDetector Boolean @default(true) @map("default_detector")
+
+  anonymize       Boolean @default(false) @map("anonymize")
+  anonymizeType   String[] @map("anonymize_type")
+  anonymizeHiddenNames String[] @map("anonymize_hidden_names")
+  anonymizeAllowedNames String[] @map("anonymize_allowed_names")
+  anonymizePreamble String? @map("anonymize_preamble")
+  anonymizeUseFaker Boolean @map("anonymize_use_faker") @default(false)
+  anonymizeThreshold Float? @map("anonymize_threshold")
+
+  banCode         Boolean @default(false) @map("ban_code")
+  banCodeThreshold Float? @map("ban_code_threshold")
+ 
+  banCompetitors  Boolean @default(false) @map("ban_competitors")
+  banCompetitorsThreshold Float? @map("ban_competitors_threshold")
+  banCompetitorsCompetitors String[] @map("ban_competitors_competitors")
+ 
+  banSubstrings   Boolean @default(false) @map("ban_substrings")
+  banSubstringsSubstrings String[] @map("ban_substrings_substrings")
+  banSubstringsMatchType String? @map("ban_substrings_match_type")
+  banSubstringsCaseSensitive Boolean @map("ban_substrings_case_sensitive") @default(false)
+  banSubstringsRedact Boolean @map("ban_substrings_redact") @default(false)
+  banSubstringsContainsAll Boolean @map("ban_substrings_contains_all") @default(false)
+
+  banTopics       Boolean @default(false) @map("ban_topics")
+  banTopicsThreshold Float? @map("ban_topics_threshold")
+  banTopicsTopics String[] @map("ban_topics_topics")
+
+  code            Boolean @default(false) @map("code")
+  codeLanguages   String[] @map("code_languages")
+  codeIsBlocked   Boolean @map("code_is_blocked") @default(false)
+
+  gibberish       Boolean @default(false) @map("gibberish")
+  gibberishThreshold Float? @map("gibberish_threshold")
+  gibberishMatchType String? @map("gibberish_match_type")
+
+  language        Boolean @default(false) @map("language")
+  languageValidLanguages String[] @map("language_valid_languages")
+  languageMatchType String? @map("language_match_type")
+
+  promptInjection Boolean @default(false) @map("prompt_injection")
+  promptInjectionThreshold Float? @map("prompt_injection_threshold")
+  promptInjectionMatchType String? @map("prompt_injection_match_type")
+
+  regex           Boolean @default(false) @map("regex")
+  regexPatterns   String[] @map("regex_patterns")
+  regexIsBlocked  Boolean @map("regex_is_blocked") @default(false)
+  regexRedact     Boolean @map("regex_redact") @default(false)
+
+  secrets         Boolean @default(false) @map("secrets")
+  secretsRedactMode String? @map("secrets_redact_mode")
+
+  sentiment       Boolean @default(false) @map("sentiment")
+  sentimentThreshold Float? @map("sentiment_threshold")
+  sentimentMatchType String? @map("sentiment_match_type")
+
+  tokenLimit      Boolean @default(false) @map("token_limit")
+  tokenLimitLimit Int? @map("token_limit_limit")
+  tokenLimitEncodingName String? @map("token_limit_encoding_name")
+
+  toxicity        Boolean @default(false) @map("toxicity")
+  toxicityThreshold Float? @map("toxicity_threshold")
+  toxicityMatchType String? @map("toxicity_match_type")
+
+  projects        Project[] // One-to-many relation with Project
+
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@map("policies")
+}
+
+enum Type {
+  RED
+  BLUE
+  AGENTIC
+}
+
+
+model Project {
+  id          String   @id @default(uuid())
+  name        String  @unique
+  description String? @map("description")
+  type        Type @map("type")
+
+  policyId    String?  @map("policy_id")
+  policy      Policy?  @relation(fields: [policyId], references: [id], onDelete: SetNull)
+  
+  redModelType   RedModelType? @map("model_type")
+  redModelName   String?  @map("model_name")
+  redModelUrl    String?  @map("model_url")
+  redModelToken  String?  @map("model_token")
+  redAuthorizationType   RedAuthorizationType?  @map("authorization_token")
+  redRequestTemplate    Json?  @map("request_template")
+
+  agenticZipUrl  String?  @map("agentic_zip_url")
+
+  blueDomain   String?  @map("blue_domain")
+
+  jobs        Job[]    // One-to-many relation with Job
+
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("projects")
+}
+
+model BlueTeamLog {
+  id                String   @id @default(uuid())
+  jobId             String   @map("job_id")
+  projectId         String   @map("project_id")
+  policyId          String   @map("policy_id")
+  policyName        String   @map("policy_name")
+  
+  userPrompt        String   @map("user_prompt") @db.Text
+  sanitizedContent  String   @map("sanitized_content") @db.Text
+  
+  status            String   @map("status")
+  isFail            Boolean  @map("is_fail")
+  
+  scannersUsed      String[] @map("scanners_used")
+  scanResults       Json     @map("scan_results")
+  riskScores        Json     @map("risk_scores")
+  failedScanners    String[] @map("failed_scanners")
+  
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  @@index([jobId])
+  @@index([projectId])
+  @@index([createdAt])
+  @@map("blueteam_logs")
+}
+
+model RedTeamLog {
+  id                String   @id @default(uuid())
+  jobId             String   @map("job_id")
+  projectId         String   @map("project_id")
+  policyId          String   @map("policy_id")
+  jobStatus         String   @map("job_status")
+  timestamp         DateTime @map("timestamp")
+
+  @@index([jobId])
+  @@index([projectId])
+  @@index([timestamp])
+  @@map("redteam_logs")
+}
+
+model RedReport {
+  id                String   @id @default(uuid())
+  jobId             String   @map("job_id")
+  jobStatus         String   @map("job_status")
+  result            Json     @map("result")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @default(now()) @map("updated_at")
+
+  @@index([jobId])
+  @@map("red_reports")
+}
+
+enum RedModelType {
+  REST
+  OPENAI
+  HUGGING_FAVE
+  HUGGING_FACE_INFERENCE_API
+  HUGGING_FACE_INFERENCE_ENDPOINT
+  REPLICATE
+  COHERE
+  GROQ
+  NIM
+  GGML
+}
+
+enum RedAuthorizationType {
+  BEARER
+  API_KEY
+  NONE
+}
+
+model Job {
+  id          String   @id @default(uuid())
+  projectId   String   @map("project_id")
+  projectType Type @map("project_type")
+  status      JobStatus @map("status")
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  redAuthorizationValue  String?  @map("authorization_key")
+  evaluationThreshold  Float?  @map("evaluation_threshold")
+
+  agenticReport  String?  @map("agentic_report")
+
+  // { job_id, status, summary, results[], report_file, summary_file, ... }
+  redReport  Json?  @map("red_report")
+
+  // Store enhanced analysis results (EnhancedGarakResults schema)
+  // { job_id, status, summary, results[], enforcement_summary, ci_metrics, policy_violations, ... }
+  redReportEnhanced  Json?  @map("red_report_enhanced")
+
+  blueAPIKey   String?  @map("blue_api_key")
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("jobs")
+}
+
+enum JobStatus {
+  PENDING
+  STARTED
+  SUCCESS
+  RETRY
+  REVOKED
+  FAILURE
+}

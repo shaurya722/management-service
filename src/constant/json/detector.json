@@ -1,0 +1,49 @@
+[
+  {
+    "name": "api_key_detector",
+    "description": "Detects API keys and secrets in content",
+    "category": "BuiltIn",
+    "detection_method": "REGEX",
+    "confidence_score": 0.8,
+    "patterns": [
+      "(?i)(?:api[_-]?key|secret)[^:\n]*[:=]\\s*[A-Za-z0-9\\-\\._]{16,}",
+      "sk-[A-Za-z0-9]{48}",
+      "AKIA[0-9A-Z]{16}",
+      "(?:ASIA|AKIA)[A-Z0-9]{16}",
+      "xoxb-[0-9]+-[0-9]+-[0-9]+-[a-z0-9]{32}",
+      "ghp_[A-Za-z0-9]{36}"
+    ]
+  },
+  {
+    "name": "pii_detector",
+    "description": "Detects personally identifiable information",
+    "category": "BuiltIn",
+    "detection_method": "PII",
+    "confidence_score": 0.7,
+    "patterns": []
+  },
+  {
+    "name": "jailbreak_detector",
+    "description": "Detects jailbreak and DAN attempts",
+    "category": "BuiltIn",
+    "detection_method": "HEURISTIC",
+    "confidence_score": 0.6,
+    "patterns": []
+  },
+  {
+    "name": "obfuscation_detector",
+    "description": "Detects encoding and obfuscation patterns",
+    "category": "BuiltIn",
+    "detection_method": "HEURISTIC",
+    "confidence_score": 0.5,
+    "patterns": []
+  },
+  {
+    "name": "malware_detector",
+    "description": "Detects malware generation attempts",
+    "category": "BuiltIn",
+    "detection_method": "HEURISTIC",
+    "confidence_score": 0.7,
+    "patterns": []
+  }
+]

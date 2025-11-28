@@ -1,0 +1,52 @@
+{
+  "MESSAGES": {
+    "API_HANDSHAKE": "Welcome to the Auth Service API",
+    "API_HANDSHAKE_ADMIN": "Welcome to the Auth Service Admin API",
+    "API_HANDSHAKE_COMPANY": "Welcome to the Auth Service Company API",
+    "HEALTH_CHECK": "Auth service is running"
+  },
+  "ERRORS": {
+    "INVALID_CREDENTIALS": "Invalid credentials",
+    "USER_NOT_FOUND": "User not found",
+    "USER_ALREADY_EXISTS": "User already exists",
+    "EMAIL_NOT_VERIFIED": "Email not verified",
+    "INVALID_TOKEN": "Invalid token",
+    "TOKEN_EXPIRED": "Token expired",
+    "PASSWORD_RESET_FAILED": "Password reset failed",
+    "EMAIL_VERIFICATION_FAILED": "Email verification failed",
+    "EMAIL_VERIFICATION_TOKEN_EXPIRED": "Email verification token expired",
+    "EMAIL_VERIFICATION_TOKEN_INVALID": "Email verification token invalid",
+    "EMAIL_VERIFICATION_TOKEN_ALREADY_USED": "Email verification token already used",
+    "EMAIL_VERIFICATION_TOKEN_NOT_FOUND": "Email verification token not found"
+  },
+  "DATA": {
+    "DATA_CREATED": "{{Data}} created successfully!",
+    "DATA_UPDATED": "{{Data}} updated successfully!",
+    "DATA_DELETED": "{{Data}} deleted successfully!",
+    "DATA_NOT_FOUND": "{{Data}} not found",
+    "DATA_RETRIEVED": "{{Data}} retrieved successfully!"
+  },
+  "MODULE": {
+    "PROFILE": "Profile",
+    "COMPANY": "Company",
+    "DETECTOR": "Detector",
+    "PROBE": "Probe",
+    "CATEGORY": "Category",
+    "POLICY": "Policy",
+    "PROJECT": "Project",
+    "JOB": "Job",
+    "LOG": "Log"
+  },
+  "COMPANY": {
+    "REGISTERED": "Company registered successfully!",
+    "APPROVE_SUCCESS": "Company approved successfully!",
+    "REJECT_SUCCESS": "Company rejected successfully!",
+    "DELETE_SUCCESS": "Company deleted successfully!"
+  },
+  "AUTH": {
+    "LOGIN_SUCCESS": "Login successful",
+    "FORGOT_PASSWORD_SUCCESS": "Password reset email sent",
+    "PASSWORD_RESET_SUCCESS": "Password reset successful",
+    "LOGOUT_SUCCESS": "Logout successful"
+  }
+}

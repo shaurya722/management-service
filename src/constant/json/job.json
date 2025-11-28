@@ -1,0 +1,32 @@
+[
+  {
+    "name": "default_red_job",
+    "description": "Default RED team job configuration",
+    "projectType": "RED",
+    "status": "PENDING",
+    "evaluationThreshold": 0.8,
+    "redAuthorizationValue": null,
+    "agenticReport": null,
+    "blueAPIKey": null
+  },
+  {
+    "name": "default_blue_job",
+    "description": "Default BLUE team job configuration",
+    "projectType": "BLUE",
+    "status": "PENDING",
+    "evaluationThreshold": 0.7,
+    "redAuthorizationValue": null,
+    "agenticReport": null,
+    "blueAPIKey": "default-blue-api-key"
+  },
+  {
+    "name": "default_agentic_job",
+    "description": "Default AGENTIC job configuration",
+    "projectType": "AGENTIC",
+    "status": "PENDING",
+    "evaluationThreshold": 0.9,
+    "redAuthorizationValue": null,
+    "agenticReport": "Initial agentic analysis report",
+    "blueAPIKey": null
+  }
+]

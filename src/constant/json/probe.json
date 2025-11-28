@@ -1,0 +1,302 @@
+[
+  {
+    "id": "lmrc.Bullying",
+    "name": "Bullying Detection",
+    "description": "Tests for bullying content"
+  },
+  {
+    "id": "lmrc.Deadnaming",
+    "name": "Deadnaming Detection",
+    "description": "Tests for deadnaming behavior"
+  },
+  {
+    "id": "lmrc.Profanity",
+    "name": "Profanity Detection",
+    "description": "Tests for profanity handling"
+  },
+  {
+    "id": "lmrc.QuackMedicine",
+    "name": "Quack Medicine",
+    "description": "Tests for medical misinformation"
+  },
+  {
+    "id": "lmrc.SexualContent",
+    "name": "Sexual Content",
+    "description": "Tests for inappropriate sexual content"
+  },
+  {
+    "id": "lmrc.Sexualisation",
+    "name": "Sexualisation",
+    "description": "Tests for sexualisation content"
+  },
+  { "id": "lmrc.SlurUsage", "name": "Slur Usage", "description": "Tests for slur generation" },
+  {
+    "id": "realtoxicityprompts.RTPBlank",
+    "name": "Real Toxicity Prompts",
+    "description": "Tests with real toxicity prompts"
+  },
+  {
+    "id": "continuation.ContinueSlursReclaimedSlurs",
+    "name": "Slur Continuation",
+    "description": "Tests slur continuation behavior"
+  },
+  {
+    "id": "dan.Ablation_Dan_11_0",
+    "name": "DAN 11.0 Ablation",
+    "description": "DAN 11.0 ablation test"
+  },
+  {
+    "id": "dan.AutoDANCached",
+    "name": "Auto DAN (Cached)",
+    "description": "Cached Auto DAN attacks"
+  },
+  { "id": "dan.DanInTheWild", "name": "DAN in the Wild", "description": "Real-world DAN variants" },
+  {
+    "id": "goodside.Tag",
+    "name": "Goodside Tag Attack",
+    "description": "Tag-based jailbreak attempts"
+  },
+  {
+    "id": "goodside.ThreatenJSON",
+    "name": "Threaten JSON",
+    "description": "JSON-based threat attacks"
+  },
+  {
+    "id": "goodside.WhoIsRiley",
+    "name": "Who Is Riley",
+    "description": "Identity confusion attacks"
+  },
+  {
+    "id": "promptinject.HijackHateHumans",
+    "name": "Hate Humans Hijack",
+    "description": "Hijack prompts to generate hate"
+  },
+  {
+    "id": "promptinject.HijackKillHumans",
+    "name": "Kill Humans Hijack",
+    "description": "Hijack prompts for violence"
+  },
+  {
+    "id": "promptinject.HijackLongPrompt",
+    "name": "Long Prompt Hijack",
+    "description": "Long prompt injection attacks"
+  },
+  {
+    "id": "latentinjection.LatentInjectionFactSnippetEiffel",
+    "name": "Latent Injection (Eiffel)",
+    "description": "Latent injection in fact snippets"
+  },
+  {
+    "id": "latentinjection.LatentInjectionReport",
+    "name": "Latent Injection (Report)",
+    "description": "Latent injection in reports"
+  },
+  {
+    "id": "latentinjection.LatentInjectionResume",
+    "name": "Latent Injection (Resume)",
+    "description": "Latent injection in resumes"
+  },
+  {
+    "id": "latentinjection.LatentJailbreak",
+    "name": "Latent Jailbreak",
+    "description": "Latent jailbreak attempts"
+  },
+  {
+    "id": "encoding.InjectAscii85",
+    "name": "ASCII85 Injection",
+    "description": "ASCII85 encoded attacks"
+  },
+  {
+    "id": "encoding.InjectBase16",
+    "name": "Base16 Injection",
+    "description": "Base16 encoded attacks"
+  },
+  {
+    "id": "encoding.InjectBase32",
+    "name": "Base32 Injection",
+    "description": "Base32 encoded attacks"
+  },
+  {
+    "id": "encoding.InjectBase64",
+    "name": "Base64 Injection",
+    "description": "Base64 encoded attacks"
+  },
+  {
+    "id": "encoding.InjectHex",
+    "name": "Hex Injection",
+    "description": "Hexadecimal encoded attacks"
+  },
+  {
+    "id": "encoding.InjectMorse",
+    "name": "Morse Code Injection",
+    "description": "Morse code encoded attacks"
+  },
+  {
+    "id": "encoding.InjectROT13",
+    "name": "ROT13 Injection",
+    "description": "ROT13 encoded attacks"
+  },
+  {
+    "id": "encoding.InjectZalgo",
+    "name": "Zalgo Text Injection",
+    "description": "Zalgo text attacks"
+  },
+  {
+    "id": "ansiescape.AnsiEscaped",
+    "name": "ANSI Escaped",
+    "description": "ANSI escape sequence attacks"
+  },
+  { "id": "ansiescape.AnsiRaw", "name": "ANSI Raw", "description": "Raw ANSI sequence attacks" },
+  {
+    "id": "leakreplay.GuardianCloze",
+    "name": "Guardian Cloze Test",
+    "description": "Guardian dataset cloze tests"
+  },
+  {
+    "id": "leakreplay.GuardianComplete",
+    "name": "Guardian Complete",
+    "description": "Guardian dataset completion"
+  },
+  {
+    "id": "leakreplay.LiteratureCloze",
+    "name": "Literature Cloze",
+    "description": "Literature cloze tests"
+  },
+  {
+    "id": "leakreplay.LiteratureComplete",
+    "name": "Literature Complete",
+    "description": "Literature completion tests"
+  },
+  {
+    "id": "leakreplay.NYTCloze",
+    "name": "NYT Cloze Test",
+    "description": "New York Times cloze tests"
+  },
+  {
+    "id": "leakreplay.PotterCloze",
+    "name": "Potter Cloze Test",
+    "description": "Harry Potter cloze tests"
+  },
+  {
+    "id": "xss.ColabAIDataLeakage",
+    "name": "Colab AI Data Leakage",
+    "description": "Colab AI data leakage tests"
+  },
+  {
+    "id": "xss.MarkdownImageExfil",
+    "name": "Markdown Image Exfiltration",
+    "description": "Image-based data exfiltration"
+  },
+  {
+    "id": "malwaregen.Evasion",
+    "name": "Malware Evasion",
+    "description": "Malware evasion techniques"
+  },
+  {
+    "id": "malwaregen.Payload",
+    "name": "Malware Payload",
+    "description": "Malware payload generation"
+  },
+  {
+    "id": "malwaregen.SubFunctions",
+    "name": "Malware Sub-functions",
+    "description": "Malware component generation"
+  },
+  {
+    "id": "malwaregen.TopLevel",
+    "name": "Top-level Malware",
+    "description": "Complete malware generation"
+  },
+  {
+    "id": "exploitation.JinjaTemplatePythonInjection",
+    "name": "Jinja Template Injection",
+    "description": "Python template injection"
+  },
+  {
+    "id": "exploitation.SQLInjectionEcho",
+    "name": "SQL Injection Echo",
+    "description": "SQL injection echo tests"
+  },
+  {
+    "id": "grandma.Substances",
+    "name": "Grandma Substances",
+    "description": "Substance-related exploits"
+  },
+  {
+    "id": "grandma.Win10",
+    "name": "Windows 10 Exploits",
+    "description": "Windows 10 system exploits"
+  },
+  {
+    "id": "grandma.Win11",
+    "name": "Windows 11 Exploits",
+    "description": "Windows 11 system exploits"
+  },
+  {
+    "id": "packagehallucination.JavaScript",
+    "name": "JavaScript Package Hallucination",
+    "description": "Fake JavaScript packages"
+  },
+  {
+    "id": "packagehallucination.Python",
+    "name": "Python Package Hallucination",
+    "description": "Fake Python packages"
+  },
+  {
+    "id": "packagehallucination.Ruby",
+    "name": "Ruby Package Hallucination",
+    "description": "Fake Ruby packages"
+  },
+  {
+    "id": "packagehallucination.Rust",
+    "name": "Rust Package Hallucination",
+    "description": "Fake Rust packages"
+  },
+  {
+    "id": "atkgen.Tox",
+    "name": "Attack Generation (Tox)",
+    "description": "Toxic attack generation"
+  },
+  {
+    "id": "misleading.FalseAssertion",
+    "name": "False Assertions",
+    "description": "False assertion generation"
+  },
+  {
+    "id": "donotanswer.MisinformationHarms",
+    "name": "Misinformation Harms",
+    "description": "Misinformation harm tests"
+  },
+  {
+    "id": "phrasing.FutureTense",
+    "name": "Future Tense Manipulation",
+    "description": "Future tense phrasing attacks"
+  },
+  {
+    "id": "phrasing.PastTense",
+    "name": "Past Tense Manipulation",
+    "description": "Past tense phrasing attacks"
+  },
+  {
+    "id": "divergence.Repeat",
+    "name": "Repetition Divergence",
+    "description": "Repetition-based attacks"
+  },
+  {
+    "id": "snowball.GraphConnectivity",
+    "name": "Graph Connectivity",
+    "description": "Graph-based reasoning attacks"
+  },
+  {
+    "id": "suffix.GCGCached",
+    "name": "GCG Suffix (Cached)",
+    "description": "Cached GCG suffix attacks"
+  },
+  { "id": "tap.TAPCached", "name": "TAP Attack (Cached)", "description": "Cached TAP attacks" },
+  {
+    "id": "topic.WordnetControversial",
+    "name": "Controversial Topics",
+    "description": "Controversial topic generation"
+  },
+  { "id": "grandma.Slurs", "name": "Grandma Slurs", "description": "Slur generation via roleplay" }
+]

@@ -1,0 +1,52 @@
+{
+  "MESSAGES": {
+    "API_HANDSHAKE": "مرحباً بك في واجهة برمجة التطبيقات لخدمة المصادقة",
+    "API_HANDSHAKE_ADMIN": "مرحباً بك في واجهة برمجة التطبيقات للإدارة",
+    "API_HANDSHAKE_COMPANY": "مرحباً بك في واجهة برمجة التطبيقات للشركة",
+    "HEALTH_CHECK": "خدمة المصادقة تعمل"
+  },
+  "ERRORS": {
+    "INVALID_CREDENTIALS": "بيانات اعتماد غير صحيحة",
+    "USER_NOT_FOUND": "المستخدم غير موجود",
+    "USER_ALREADY_EXISTS": "المستخدم موجود بالفعل",
+    "EMAIL_NOT_VERIFIED": "البريد الإلكتروني غير مؤكد",
+    "INVALID_TOKEN": "رمز غير صحيح",
+    "TOKEN_EXPIRED": "انتهت صلاحية الرمز",
+    "PASSWORD_RESET_FAILED": "فشل في إعادة تعيين كلمة المرور",
+    "EMAIL_VERIFICATION_FAILED": "فشل في تأكيد البريد الإلكتروني",
+    "EMAIL_VERIFICATION_TOKEN_EXPIRED": "انتهت صلاحية رمز تأكيد البريد الإلكتروني",
+    "EMAIL_VERIFICATION_TOKEN_INVALID": "رمز تأكيد البريد الإلكتروني غير صحيح",
+    "EMAIL_VERIFICATION_TOKEN_ALREADY_USED": "تم استخدام رمز تأكيد البريد الإلكتروني بالفعل",
+    "EMAIL_VERIFICATION_TOKEN_NOT_FOUND": "رمز تأكيد البريد الإلكتروني غير موجود"
+  },
+  "DATA": {
+    "DATA_CREATED": "تم إنشاء {{Data}} بنجاح!",
+    "DATA_UPDATED": "تم تحديث {{Data}} بنجاح!",
+    "DATA_DELETED": "تم حذف {{Data}} بنجاح!",
+    "DATA_NOT_FOUND": "{{Data}} غير موجود",
+    "DATA_RETRIEVED": "تم استرداد {{Data}} بنجاح!"
+  },
+  "MODULE": {
+    "PROFILE": "الملف الشخصي",
+    "COMPANY": "الشركة",
+    "DETECTOR": "الكاشف",
+    "PROBE": "المسبار",
+    "CATEGORY": "الفئة",
+    "POLICY": "السياسة",
+    "PROJECT": "المشروع",
+    "JOB": "المهمة",
+    "LOG": "السجل"
+  },
+  "COMPANY": {
+    "REGISTERED": "تم تسجيل الشركة بنجاح!",
+    "APPROVE_SUCCESS": "تم قبول الشركة بنجاح!",
+    "REJECT_SUCCESS": "تم رفض الشركة بنجاح!",
+    "DELETE_SUCCESS": "تم حذف الشركة بنجاح!"
+  },
+  "AUTH": {
+    "LOGIN_SUCCESS": "تم تسجيل الدخول بنجاح",
+    "FORGOT_PASSWORD_SUCCESS": "تم إرسال بريد إلكتروني لإعادة تعيين كلمة المرور",
+    "PASSWORD_RESET_SUCCESS": "تم إعادة تعيين كلمة المرور بنجاح",
+    "LOGOUT_SUCCESS": "تم تسجيل الخروج بنجاح"
+  }
+}
